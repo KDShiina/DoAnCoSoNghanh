@@ -1,0 +1,43 @@
+﻿@model DoAnCoSoNghanh.Models.NhaTuyenDung
+
+@{
+    ViewBag.Title = "Chitiet";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết nhà tuyển dụng</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Tên công ty
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenCongTy)
+        </dd>
+
+        <dt>
+           Mô tả công ty
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTaCongTy)
+        </dd>
+
+        <dt>
+           Hình
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hinh)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Quay lại", "Index")
+</p>

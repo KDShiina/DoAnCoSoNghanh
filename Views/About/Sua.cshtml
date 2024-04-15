@@ -1,0 +1,26 @@
+﻿@model DoAnCoSoNghanh.Models.Comment
+
+@{
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+    ViewBag.Title = "Chỉnh sửa bình luận";
+}
+
+<h2>Chỉnh sửa bình luận</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.CommentID)
+    @Html.HiddenFor(model => model.CommentTime)
+
+<div class="form-group">
+    @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+</div>
+    <br />
+    <button type="submit" class="btn btn-primary">Lưu chỉnh sửa</button>
+}
+
+<div>
+    <br />
+    @Html.ActionLink("Quay lại", "MyComments")
+</div>

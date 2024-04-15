@@ -1,0 +1,120 @@
+﻿@model DoAnCoSoNghanh.Models.ViecLam
+@{
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+
+
+<body>
+    <!-- Header End -->
+    <div class="container-xxl py-5 bg-dark page-header mb-5">
+        <div class="container my-5 pt-5 pb-4">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Job Detail</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-uppercase">
+                    <li class="breadcrumb-item"><a href="~/Contact/Index">Home</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Job Detail</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Job Detail Start -->
+   
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row gy-5 gx-4">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center mb-5">
+                        <img class="flex-shrink-0 img-fluid border rounded" src="~/img/@Model.Hinh" alt="" style="width: 80px; height: 80px;">
+                        <div class="text-start ps-4">
+                            <h3 class="mb-3">@Model.TenVieclam</h3>
+                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>@Model.DiaDiemLamViec</span>
+                            <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>@Model.LoaiViecLam</span>
+
+                            <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>@Model.Luong</span>
+                            <span class="text-truncate me-0"><i class="bi bi-building"></i>@Model.NhaTuyenDung.TenCongTy</span>
+
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <h4 class="mb-3">Mô tả công việc</h4>
+                        <ul class="list-unstyled">
+                            <li>@Html.Raw(Model.MoTaCongViec)</li>
+                        </ul>
+                        <h4 class="mb-3">Quyền Lợi</h4>
+                        <ul class="list-unstyled">
+                            <li>@Html.Raw(Model.QuyenLoiCongViec)</li>
+                        </ul>
+                        <h4 class="mb-3">Yêu Cầu</h4>
+                        <ul class="list-unstyled">
+                            <li>@Html.Raw(Model.YeuCauCongViec) </li>
+                        </ul>
+                    </div>
+                    @{ var khachHang = Session["KhachHang"] as DoAnCoSoNghanh.Models.KhachHang;}
+                <div class="col-12">
+                    @if (khachHang != null)
+                    {
+                        <h4 class="mb-4">Apply For The Job</h4>
+                        <form action="@Url.Action("ApplyForJob", "JobDetails")" method="post" enctype="multipart/form-data">
+                            @Html.HiddenFor(model => model.MaCongViec)
+                            @Html.HiddenFor(model => model.MaNTD) <!-- Assuming you also need MaNTD -->
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <label>Họ và Tên</label>
+                                    <input type="text" class="form-control" name="TenNguoiUngTuyen" value="@khachHang.HoTen"placeholder="Tên của bạn" readonly>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <label>          Email</label>
+                                    <input type="email" class="form-control" name="EmailNguoiUngTuyen" value="@khachHang.Email" placeholder="Email của bạn" readonly>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="file" name="file" accept=".doc, .docx, .pdf" required class="form-control bg-white" >
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control" rows="5" name="NoiDung" placeholder="Nội dung" required> </textarea>
+                                </div>
+                                <!-- Add other input fields as needed -->
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100" type="submit">Apply Now</button>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <p>Vui lòng <a href="@Url.Action("DangNhap", "Home")">đăng nhập</a> để ứng tuyển công việc.</p>
+                    }
+
+                </div>
+
+                </div>
+                <script>
+    
+                </script>
+
+                <div class="col-lg-4">
+                    <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
+                        <h4 class="mb-4">Công Việc</h4>
+                        <p><i class="fa fa-angle-right text-primary me-2"></i>@Model.LoaiViecLam</p>
+                        <p><i class="fa fa-angle-right text-primary me-2"></i>@Model.Luong</p>
+                        <p><i class="fa fa-angle-right text-primary me-2"></i>@Model.DiaDiemLamViec</p>
+                        <p class="m-0"><i class="fa fa-angle-right text-primary me-2"></i>Date Line: @Model.NgayHetHan</p>
+                    </div>
+                    <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
+                        <h4 class="mb-4">Company Detail</h4>
+                        <p class="m-0">@Model.NhaTuyenDung.MoTaCongTy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Job Detail End -->
+
+
+</body>
+
+
+
+
+

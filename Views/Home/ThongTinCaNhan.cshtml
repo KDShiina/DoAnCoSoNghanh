@@ -1,0 +1,47 @@
+﻿@model DoAnCoSoNghanh.Models.KhachHang
+
+@{
+    ViewBag.Title = "ThongTinCaNhan";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+<br />
+<hr />
+<h2>Thông tin cá nhân</h2>
+<hr />
+<br />
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td class="text-right"><b>Họ và Tên</b></td>
+                <td>@Html.DisplayFor(model => model.HoTen)</td>
+            </tr>
+            <tr>
+                <td class="text-right"><b>Tài khoản</b></td>
+                <td>@Html.DisplayFor(model => model.TaiKhoan)</td>
+            </tr>
+            <tr>
+                <td class="text-right"><b>Mật Khẩu</b></td>
+                <td>@Html.DisplayFor(model => model.MatKhau)</td>
+            </tr>
+            <tr>
+                <td class="text-right"><b>Email</b></td>
+                <td>@Html.DisplayFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <td class="text-right"><b>Địa chỉ</b></td>
+                <td>@Html.DisplayFor(model => model.DiaChi)</td>
+            </tr>
+            <tr>
+                <td class="text-right"><b>Điện thoại</b></td>
+                <td>@Html.DisplayFor(model => model.DienThoai)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="text-right">
+    @Html.ActionLink("Chỉnh sửa", "ChinhSuaThongTin", "Home", new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
+</div>

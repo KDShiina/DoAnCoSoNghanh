@@ -1,0 +1,121 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DoAnCoSoNghanh.Models.NhaTuyenDung>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<style>
+    .horizontal-pages {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+        .pagination > li {
+            display: inline;
+            margin-right: 5px;
+        }
+
+            .pagination > li > a,
+            .pagination > li > span {
+                position: relative;
+                float: left;
+                padding: 6px 12px;
+                line-height: 1.42857143;
+                text-decoration: none;
+                color: #337ab7;
+                background-color: #fff;
+                border: 1px solid #ddd;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            z-index: 2;
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #337ab7;
+            cursor: default;
+        }
+    .error-message {
+
+        color: red;
+        margin-top: 10px;
+        text-align: center;
+    }
+</style>
+
+
+
+<h1><b>Nhà tuyển dụng</b></h1>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Them")
+</p>
+@using (Html.BeginForm("Index", "NhaTuyenDung", FormMethod.Post))
+{
+    <p>
+        <b>Tìm tên nhà tuyển dụng</b> : @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Tìm kiếm" class="btn btn-success" />
+    </p>
+}
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                Mã nhà tuyển dụng
+            </th>
+            <th>
+                Tên công ty
+            </th>
+            <th>
+                Mô tả công ty
+            </th>
+
+            <th>
+                MaKH
+            </th>
+            <th>Khác</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaNTD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenCongTy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MoTaCongTy)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.KhachHang.MaKH)
+                </td>
+
+                <td>
+                    <a href="@Url.Action("Sua", new { id = item.MaNTD  })" class="btn btn-warning btn-sm" role="button">Sửa</a>
+                    <a href="@Url.Action("ChiTiet", new {  id = item.MaNTD })" class="btn btn-info btn-sm" role="button">Chi tiết</a>
+
+
+                </td>
+
+            </tr>
+        }
+    </table>
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) của @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.currentFilter }))
+</div>

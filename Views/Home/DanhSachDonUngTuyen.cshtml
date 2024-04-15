@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Danh sách đơn ứng tuyển";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+
+@model List<DoAnCoSoNghanh.Models.DonUngTuyen>
+<style>
+    .choduyet {
+        color: red;
+    }
+
+    .daduyet {
+        color: green;
+    }
+</style>
+<div class="text-center">
+    <br />
+    <hr />
+    <h2>Danh sách đơn ứng tuyển đã nộp</h2>
+    <hr />
+    <br />
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center" role="alert">
+        Bạn chưa nộp đơn ứng tuyển nào.
+    </div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Công Ty</th>
+                <th>Tên Công Việc</th>
+                <th>Ngày Nộp</th>
+                <th>Địa chỉ</th>
+                <th>Trạng Thái</th>
+                <th> Thông báo</th>
+                <th>Các chức năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var don in Model)
+            {
+                <tr>
+                    <td>@don.NhaTuyenDung.TenCongTy</td>
+                    <td>@don.ViecLam.TenVieclam</td>
+                    <td>@don.NgayNop</td>
+                    <td>@don.ViecLam.DiaDiemLamViec</td>
+                    <td>
+                        @{
+                            string trangThaiText = "Chờ duyệt";
+                            string trangThaiClass = "choduyet";
+                            if (don.TrangThaiDonUngTuyen == 1)
+                            {
+                                trangThaiText = "Đã duyệt";
+                                trangThaiClass = "daduyet";
+                            }
+                            else if (don.TrangThaiDonUngTuyen == 2)
+                            {
+                                trangThaiText = "Từ chối";
+                            }
+                        }
+                        <span class="@trangThaiClass">@trangThaiText</span>
+
+                    </td>
+                    <td>
+
+                        @if (don.TrangThaiDonUngTuyen == 1 && don.NgayDuKienDenCongTy.HasValue)
+                        {
+                            <p class="text-success">
+                                Chúc mừng! Đơn ứng tuyển vào công việc @don.ViecLam.TenVieclam của bạn đã
+                                được chấp nhận. Hãy đến công ty vào ngày
+                                @don.NgayDuKienDenCongTy.Value.ToString("dd/MM/yyyy") tại @don.ViecLam.DiaDiemLamViec để phỏng vấn nhé! Chúc bạn thành công!
+                            </p>
+                            <p>Nội dung gửi tới bạn: @don.NoiDungGuiToiKhachHang</p>
+                        }
+                        else if (don.TrangThaiDonUngTuyen == 2)
+                        {
+                            <p class="text-info">Đơn ứng tuyển của bạn  đã bị từ chối.</p>
+                            <p>Nội dung gửi tới bạn: @don.NoiDungGuiToiKhachHang</p>
+                        }
+                        else
+                        {
+                            <p class="text-info">Đơn ứng tuyển của bạn đang chờ duyệt.</p>
+                        }
+
+                    </td>
+
+                    <td>
+                        @if (don.TrangThaiDonUngTuyen != 1 && don.TrangThaiDonUngTuyen != 2)
+                        {
+                            <a href="@Url.Action("XoaDonUngTuyen", new { id = don.MaDonUngTuyen })" class="btn btn-danger" role="button">Xoá</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

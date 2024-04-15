@@ -1,0 +1,105 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DoAnCoSoNghanh.Models.LoaiVieclam>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<style>
+
+
+    .horizontal-pages {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+        .pagination > li {
+            display: inline;
+            margin-right: 5px;
+        }
+
+            .pagination > li > a,
+            .pagination > li > span {
+                position: relative;
+                float: left;
+                padding: 6px 12px;
+                line-height: 1.42857143;
+                text-decoration: none;
+                color: #337ab7;
+                background-color: #fff;
+                border: 1px solid #ddd;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            z-index: 2;
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #337ab7;
+            cursor: default;
+        }
+</style>
+
+<h2>Danh Mục</h2>
+
+<p>
+    @Html.ActionLink("Thêm danh mục", "Them")
+</p>
+@using (Html.BeginForm("Index", "DanhMucc", FormMethod.Post))
+{
+
+    <p>
+        <b>Tìm tên loại việc làm :</b> @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+    </p>
+}
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                Tên Loại Việc Làm
+            </th>
+            <th>
+                Icon
+            </th>
+            <th>Khác</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Icon)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Sua", new { id = item.Mal }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Chi Tiết", "Chitiet", new { id = item.Mal }, new { @class = "btn btn-info btn-sm" })
+                    @Html.ActionLink("Xóa", "Xoa", new { id = item.Mal }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Bạn chắc chắn muốn xóa chứ ?');" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) của @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.currentFilter }))
+</div>

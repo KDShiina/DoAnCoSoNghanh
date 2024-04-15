@@ -1,0 +1,158 @@
+﻿@model DoAnCoSoNghanh.Models.ViecLam
+
+@{
+    ViewBag.Title = "Sua";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<script src="~/ckeditor/ckeditor.js"></script>
+<h2>Chi tiết việc làm</h2>
+
+@using (Html.BeginForm("Sua", "CongViec", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MaCongViec)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Hinh, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @if (!string.IsNullOrEmpty(Model.Hinh))
+            {
+                <img src="~/img/@Model.Hinh" alt="Ảnh công việc" />
+            }
+            <input type="file" name="ImageUpload" readonly disabled />
+            @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TenVieclam, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenVieclam, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.TenVieclam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DiaDiemLamViec, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DiaDiemLamViec, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.DiaDiemLamViec, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LoaiViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LoaiViecLam, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.LoaiViecLam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Luong, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Luong, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Luong, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MoTaCongViec, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea id="MoTaCongViec" readonly name="MoTaCongViec">@Model.MoTaCongViec</textarea>
+            <script>
+                CKEDITOR.replace('MoTaCongViec', { autoParagraph: true });
+            </script>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.YeuCauCongViec, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea id="YeuCauCongViec" readonly name="YeuCauCongViec">@Model.YeuCauCongViec</textarea>
+            <script>
+                CKEDITOR.replace('YeuCauCongViec', { autoParagraph: true });
+            </script>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuyenLoiCongViec, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea id="QuyenLoiCongViec" readonly name="QuyenLoiCongViec">@Model.QuyenLoiCongViec</textarea>
+            <script>
+                CKEDITOR.replace('QuyenLoiCongViec', { autoParagraph: true });
+            </script>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.NgayDang, htmlAttributes: new { @class = "control-label col-md-2", @readonly = "readonly" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NgayDang, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.NgayDang, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.NgayHetHan, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NgayHetHan, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.NgayHetHan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TrangThai, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.TrangThai,
+                new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Chờ Duyệt", Value = "0" },
+                    new SelectListItem { Text = " Duyệt", Value = "1" },
+                    new SelectListItem { Text = "Từ Chối", Value = "2" }
+                },
+
+                new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.KhachHang.MaKH, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.KhachHang.MaKH, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.KhachHang.MaKH, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MaNTD, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MaNTD, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.MaNTD, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Duyệt" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+
+}
+
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+</div>

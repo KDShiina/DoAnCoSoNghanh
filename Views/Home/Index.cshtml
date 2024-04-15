@@ -1,0 +1,160 @@
+﻿@model DoAnCoSoNghanh.Models.HomeModels
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+<body>
+    <!-- Search Start -->
+    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+        <div class="container">
+            <div class="row g-2">
+                <div class="col-md-10">
+                    <div class="row g-2">
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-inline" }))
+                        {
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control border-0" placeholder="Tìm công việc / địa điểm " name="SearchString" value="@ViewBag.CurrentFilter" style="color: brown;" />
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary" style="color: pink;">Tìm kiếm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Search End -->
+    <!-- Category Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Danh Mục</h1>
+            <div class="row g-4">
+                @foreach (var item in Model.ListLoaivieclam)
+                {
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a class="cat-item rounded p-4" href="@Url.Action("DanhMucCongViec", "DanhMuc", new { Id = item.Mal })">
+                            <i class="fa fa-3x @item.Icon text-primary mb-4"></i>
+                            <h6 class="mb-3">@item.TenLoai</h6>
+
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Category End -->
+    <!-- Jobs Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Các Công Việc</h1>
+            <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
+
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                        @foreach (var viecLam in Model.Listvieclam.Take(5))
+                        {
+                            <div class="job-item p-4 mb-4">
+                                <div class="row g-4">
+                                    <div class="col-sm-12 col-md-8 d-flex align-items-center ">
+                                        <img class="flex-shrink-0 img-fluid border rounded" src="~/img/@viecLam.Hinh" alt="" style="width: 80px; height: 80px;">
+                                        <div class="text-start ps-4">
+                                            <a href="@Url.Action("Index", "JobDetails", new {Id = viecLam.MaCongViec})"> <h5 class="mb-3">@viecLam.TenVieclam</h5></a>
+                                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>@viecLam.DiaDiemLamViec</span>
+                                            <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>@viecLam.LoaiViecLam</span>
+                                            <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>@viecLam.Luong</span>
+                                            <span class="text-truncate me-0"><i class="bi bi-building"></i>@(viecLam?.NhaTuyenDung?.TenCongTy)</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+
+                                        <a class="btn btn-light btn-square me-3" href="@Url.Action("SaveJob", new { id = viecLam.MaCongViec })"><i class="far fa-heart text-primary"></i></a>
+                                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line: @viecLam.NgayHetHan</small>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jobs End -->
+    <!-- Testimonial Start -->
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <h1 class="text-center mb-5">Đánh giá từ Khách Hàng Của Chúng Tôi</h1>
+            <div class="owl-carousel testimonial-carousel">
+                @foreach (var comment in Model.ListComment)
+                {
+                    <div class="testimonial-item bg-light rounded p-4">
+                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                        <p>@comment.Content</p>
+                        <div class="d-flex align-items-center">
+                            <div class="ps-3">
+                                <h5 class="mb-1">Author: @comment.KhachHang.HoTen</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Testimonial End -->
+</body>
+<style>
+
+    .horizontal-pages {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+        .pagination > li {
+            display: inline;
+            margin-right: 5px;
+        }
+
+            .pagination > li > a,
+            .pagination > li > span {
+                position: relative;
+                float: left;
+                padding: 6px 12px;
+                line-height: 1.42857143;
+                text-decoration: none;
+                color: #337ab7;
+                background-color: #fff;
+                border: 1px solid #ddd;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            z-index: 2;
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #337ab7;
+            cursor: default;
+        }
+</style>

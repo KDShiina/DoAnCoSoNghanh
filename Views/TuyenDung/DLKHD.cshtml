@@ -1,0 +1,42 @@
+﻿@model DoAnCoSoNghanh.Models.DatLichViewModel
+@using System.Web.Mvc
+@{
+    ViewBag.Title = "Đặt lịch";
+    Layout = "~/Views/Shared/_LayoutPageNhaTuyenDung.cshtml";
+}
+
+@using (Html.BeginForm("DLKHD", "TuyenDung", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Thông tin Khách hàng</h2>
+                <div class="form-group">
+                    <p>Họ tên:@Model.HoTen</p>
+                </div>
+                <div class="form-group">
+                    <p>Tên công ty: @Model.TenCongTy</p>
+                </div>
+                <div class="form-group">
+                    <p>Địa chỉ: @Model.DiaChi</p>
+                </div>
+                <div class="form-group">
+                    <p>Số điện thoại: @Model.Email</p>
+                </div>
+                <div class="form-group">
+                    <p>Số điện thoại: @Model.DienThoai</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Chọn ngày đặt lịch</h2>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NgayDatLich)
+                    @Html.EditorFor(model => model.NgayDatLich, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Đặt lịch" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

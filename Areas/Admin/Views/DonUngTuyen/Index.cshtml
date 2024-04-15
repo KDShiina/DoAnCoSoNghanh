@@ -1,0 +1,158 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DoAnCoSoNghanh.Models.DonUngTuyen>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<style>
+    .choduyet {
+        color: red;
+    }
+
+    .daduyet {
+        color: green;
+    }
+
+    .horizontal-pages {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+        .pagination > li {
+            display: inline;
+            margin-right: 5px;
+        }
+
+            .pagination > li > a,
+            .pagination > li > span {
+                position: relative;
+                float: left;
+                padding: 6px 12px;
+                line-height: 1.42857143;
+                text-decoration: none;
+                color: #337ab7;
+                background-color: #fff;
+                border: 1px solid #ddd;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            z-index: 2;
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #337ab7;
+            cursor: default;
+        }
+</style>
+
+<h1><b> Đơn ứng tuyển</b></h1>
+
+@using (Html.BeginForm("Index", "DonUngTuyen", FormMethod.Post))
+{
+
+    <p>
+        <b>Tìm đơn theo mã kh :</b> @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+        <a href="@Url.Action("CountDonUngTuyen", "DonUngTuyen")" class="btn btn-info">Thống kê</a>
+    </p>
+}
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+
+            <th>
+                Mã công việc
+            </th>
+            <th>
+                Trạng thái đơn
+            </th>
+            <th>
+                Ngày nộp
+            </th>
+            <th>
+                MaKH
+            </th>
+
+            <th>
+                MaNTD
+            </th>
+            <th>
+                Tên người ứng tuyển
+            </th>
+            <th>
+                Email người ứng tuyển
+            </th>
+
+            <th></th>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaCongViec)
+                </td>
+
+                <td>
+                    @{
+                        string trangThaiText = "Chờ duyệt";
+                        string trangThaiClass = "choduyet";
+                        if (item.TrangThaiDonUngTuyen == 1)
+                        {
+                            trangThaiText = "Đã duyệt";
+                            trangThaiClass = "daduyet";
+                        }
+                        else if (item.TrangThaiDonUngTuyen == 2)
+                        {
+                            trangThaiText = "Từ chối";
+                        }
+                    }
+                    <span class="@trangThaiClass">@trangThaiText</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayNop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaNTD)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenNguoiUngTuyen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailNguoiUngTuyen)
+                </td>
+
+
+
+
+                <td>
+
+                    <a href="@Url.Action("ChiTiet", new {  id = item.MaDonUngTuyen })" class="btn btn-info btn-smy" role="button">Chi tiết</a>
+
+
+            </tr>
+
+        }
+    </table>
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) của @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.currentFilter }))
+</div>

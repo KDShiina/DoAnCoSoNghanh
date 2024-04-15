@@ -1,0 +1,113 @@
+﻿@model PagedList.IPagedList<DoAnCoSoNghanh.Models.Comment>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Danh sách bình luận";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách bình luận</h2>
+<style>
+    .horizontal-pages {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+        .pagination > li {
+            display: inline;
+            margin-right: 5px;
+        }
+
+            .pagination > li > a,
+            .pagination > li > span {
+                position: relative;
+                float: left;
+                padding: 6px 12px;
+                line-height: 1.42857143;
+                text-decoration: none;
+                color: #337ab7;
+                background-color: #fff;
+                border: 1px solid #ddd;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            z-index: 2;
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #337ab7;
+            cursor: default;
+        }
+</style>
+
+@using (Html.BeginForm("Index", "Quanlycomments", FormMethod.Post))
+{
+    <p>
+        Tìm kiếm: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+    </p>
+}
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                ID Bình luận
+            </th>
+            <th>
+                ID Khách hàng
+            </th>
+            <th>
+                Tên khách hàng
+            </th>
+            <th>
+                Nội dung
+            </th>
+            <th>
+                Thời gian
+            </th>
+            <th>
+                Khác
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KhachHang.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentTime)
+                </td>
+                <td>
+                    <a href="@Url.Action("Xoa", new {  id = item.CommentID })" class="btn btn-danger btn-sm" role="button" , onclick="return confirm('Bạn chắc chắn muốn xóa chứ ?');">Xóa</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+ </div>

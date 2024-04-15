@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "DanhSachDonUngTuyen";
+    Layout = "~/Views/Shared/_LayoutPageNhaTuyenDung.cshtml";
+}
+@model IEnumerable<DoAnCoSoNghanh.Models.DonUngTuyen>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Other head elements -->
+</head>
+
+<style>
+    .choduyet {
+        color: red;
+    }
+
+    .daduyet {
+        color: green;
+    }
+</style>
+
+<h2>Danh sách đơn ứng tuyển</h2>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <th>Mã Đơn Ứng Tuyển</th>
+            <th>Tên Công Việc</th>
+            <th>Trạng Thái</th>
+            <th>Ngày Nộp</th>
+            <th>Tên Khách Hàng</th>
+            <th>Nội dung</th>
+            <th>Email</th>
+            <th>File CV</th>
+
+
+        </tr>
+        @foreach (var donUngTuyen in Model)
+        {
+            <tr>
+                <td>@donUngTuyen.MaDonUngTuyen</td>
+                <td>@donUngTuyen.ViecLam.TenVieclam</td>
+                <td>
+                    @{
+                        string trangThaiText = "Chờ duyệt";
+                        string trangThaiClass = "choduyet";
+                        if (donUngTuyen.TrangThaiDonUngTuyen == 1)
+                        {
+                            trangThaiText = "Đã duyệt";
+                            trangThaiClass = "daduyet";
+                        }
+                        else if (donUngTuyen.TrangThaiDonUngTuyen == 2)
+                        {
+                            trangThaiText = "Từ chối";
+                        }
+                    }
+                    <span class="@trangThaiClass">@trangThaiText</span>
+                </td>
+                <td>@donUngTuyen.NgayNop</td>
+                <td>@donUngTuyen.TenNguoiUngTuyen</td>
+                <td>@donUngTuyen.NoiDung</td>
+                <td>@donUngTuyen.EmailNguoiUngTuyen</td>
+                <td>@donUngTuyen.FileCV</td>
+
+                <td> <a href="@Url.Action("SuaDon",new {  id = donUngTuyen.MaDonUngTuyen })" class="btn btn-primary" role="button">Chi tiết</a></td>
+                <td>
+                    <a href="@Url.Action("ViewFile", "TuyenDung", new { donUngTuyenId = donUngTuyen.MaDonUngTuyen })">Xem CV</a>
+                </td>
+
+            </tr>
+        }
+    </table>
+</div>

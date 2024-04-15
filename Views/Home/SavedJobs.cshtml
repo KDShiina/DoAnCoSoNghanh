@@ -1,0 +1,78 @@
+﻿@model IEnumerable<DoAnCoSoNghanh.Models.ViecLam>
+
+@{
+    ViewBag.Title = "SavedJobs";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+
+<div class="text-center">
+    <br />
+    <hr />
+    <h2>Công việc đã lưu</h2>
+    <hr />
+    <br />
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center" role="alert">
+        Bạn chưa lưu công việc nào.
+    </div>
+}
+else
+{
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenVieclam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaDiemLamViec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiViecLam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Luong)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.NgayDang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayHetHan)
+            </th>
+            <th>Các chức năng</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenVieclam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaDiemLamViec)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiViecLam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Luong)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayHetHan)
+                </td>
+
+                <td>
+                    <a href="@Url.Action("XoaSaveJobs", new {  id = item.MaCongViec })" class="btn btn-danger" role="button">Xóa</a>
+                    <a href="@Url.Action("Index","JobDetails", new {  id = item.MaCongViec })" class="btn btn-warning" role="button">Đi</a>
+                </td>
+            </tr>
+        }
+    </table>
+}

@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+@model IEnumerable<DoAnCoSoNghanh.Models.DatLichViewModel>
+
+<h2>Danh sách lịch hẹn</h2>
+<table>
+    <tr>
+        <th>
+            Xác nhận
+        </th>
+        <th>
+            Mã đặt lịch
+        </th>
+        <th>
+            Ngày đặt lịch
+        </th>
+        <th>
+            Mã khách hàng
+        </th>
+        <th>
+            Họ tên khách hàng
+        </th>
+        <th>
+            Tên công ty
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <button class="btnXacNhan" data-id="@item.MaDatLich">Xác nhận</button>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaDatLich)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDatLich)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenCongTy)
+            </td>
+        </tr>
+    }
+</table>
+}
+

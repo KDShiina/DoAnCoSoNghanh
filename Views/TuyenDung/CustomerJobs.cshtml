@@ -1,0 +1,39 @@
+﻿
+﻿
+@{
+    ViewBag.Title = "CustomerJobs";
+    Layout = "~/Views/Shared/_LayoutPageNhaTuyenDung.cshtml";
+}
+
+@model List<DoAnCoSoNghanh.Models.ViecLam>
+
+<div class="container">
+    <h2>DANH SÁCH VIỆC LÀM</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tên Công Việc</th>
+                <th>Địa Điểm Làm Việc</th>
+                <th>Loại Công Việc</th>
+                <th>Mô Tả Công Việc</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var job in Model)
+            {
+                <tr>
+                    <td>@job.TenVieclam</td>
+                    <td>@job.DiaDiemLamViec</td>
+                    <td>@job.LoaiViecLam</td>
+                    <td>@job.MoTaCongViec</td>
+                    <td>
+                        @Html.ActionLink("Xem danh sách", "DSDonUngTuyen", "TuyenDung", new { maCongViec = job.MaCongViec }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

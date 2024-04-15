@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.25, 9" name="TimViec">
+  <DataContextMoniker Name="/TimViecDataContext" />
+  <nestedChildShapes>
+    <classShape Id="4d2ef632-9a59-4ed8-bee1-fa8cb68c50cc" absoluteBounds="3.5, 4.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/TimViecDataContext/Comment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7c9bb73e-6108-47b3-9807-5b739997b73b" absoluteBounds="3.515, 4.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4f225b6c-2b77-49ba-9cbf-9da5ff09c782" absoluteBounds="6.25, 2, 2, 3.6939111328124992">
+      <DataClassMoniker Name="/TimViecDataContext/ViecLam" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bbc2f0f7-3df3-446d-be68-dc88c0ed8829" absoluteBounds="6.265, 2.46, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6052c8d9-82e5-4545-ac62-d82cadfbaacd" absoluteBounds="6.25, 7, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/TimViecDataContext/DatLich" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7947be56-99c0-497f-9734-0228e944e4a3" absoluteBounds="6.265, 7.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fb1a9475-c799-46e0-98c7-20fa900b8969" absoluteBounds="12, 3.75, 2, 3.1170068359375005">
+      <DataClassMoniker Name="/TimViecDataContext/DonUngTuyen" />
+      <nestedChildShapes>
+        <elementListCompartment Id="424efa9c-4e47-4f83-8c71-dbfd88fd2494" absoluteBounds="12.015, 4.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e4097095-e4c0-43f9-afe9-0f8b5bf69a1b" absoluteBounds="0.75, 5.25, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/TimViecDataContext/KhachHang" />
+      <nestedChildShapes>
+        <elementListCompartment Id="384b7d60-f52e-4998-8cde-d23d723b097b" absoluteBounds="0.765, 5.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d4c97add-b420-43dd-a4f8-e65f5a7cf76a" absoluteBounds="3.5, 2.125, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/TimViecDataContext/LoaiVieclam" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8ae07fc1-49f2-464e-93ce-8316d960640d" absoluteBounds="3.515, 2.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f6eee5a2-bc84-40c0-b8e9-eaed4dca7060" absoluteBounds="9, 4.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/TimViecDataContext/LuuViec" />
+      <nestedChildShapes>
+        <elementListCompartment Id="32dda22a-fe4f-47c3-8377-85f3046bcbfc" absoluteBounds="9.015, 4.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8c7d33b9-1d7c-4bdb-a68c-a217d3e4b9be" absoluteBounds="3.5, 6.75, 2, 1.7708968098958326">
+      <DataClassMoniker Name="/TimViecDataContext/NhaTuyenDung" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c9569c81-c6bb-4c3a-a640-a38f034d767e" absoluteBounds="3.515, 7.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.25 : 4.09375); (12 : 4.09375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/ViecLam/ViecLam_DonUngTuyen" />
+      <nodes>
+        <classShapeMoniker Id="4f225b6c-2b77-49ba-9cbf-9da5ff09c782" />
+        <classShapeMoniker Id="fb1a9475-c799-46e0-98c7-20fa900b8969" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 5.66429768880208); (3.5 : 5.66429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/KhachHang/KhachHang_Comment" />
+      <nodes>
+        <classShapeMoniker Id="e4097095-e4c0-43f9-afe9-0f8b5bf69a1b" />
+        <classShapeMoniker Id="4d2ef632-9a59-4ed8-bee1-fa8cb68c50cc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 5.25); (1.75 : 4.00564697265625); (6.25 : 4.00564697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/KhachHang/KhachHang_ViecLam" />
+      <nodes>
+        <classShapeMoniker Id="e4097095-e4c0-43f9-afe9-0f8b5bf69a1b" />
+        <classShapeMoniker Id="4f225b6c-2b77-49ba-9cbf-9da5ff09c782" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.41429768880208); (9.38541416666667 : 6.41429768880208 : JumpStart); (9.55208083333333 : 6.41429768880208 : JumpEnd); (9.91666666666667 : 6.41429768880208 : JumpStart); (10.0833333333333 : 6.41429768880208 : JumpEnd); (12 : 6.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/KhachHang/KhachHang_DonUngTuyen" />
+      <nodes>
+        <classShapeMoniker Id="e4097095-e4c0-43f9-afe9-0f8b5bf69a1b" />
+        <classShapeMoniker Id="fb1a9475-c799-46e0-98c7-20fa900b8969" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 2.81814697265625); (6.25 : 2.81814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/LoaiVieclam/LoaiVieclam_ViecLam" />
+      <nodes>
+        <classShapeMoniker Id="d4c97add-b420-43dd-a4f8-e65f5a7cf76a" />
+        <classShapeMoniker Id="4f225b6c-2b77-49ba-9cbf-9da5ff09c782" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 5.09695556640625); (9 : 5.09695556640625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/ViecLam/ViecLam_LuuViec" />
+      <nodes>
+        <classShapeMoniker Id="4f225b6c-2b77-49ba-9cbf-9da5ff09c782" />
+        <classShapeMoniker Id="f6eee5a2-bc84-40c0-b8e9-eaed4dca7060" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.58215134440104); (5.58451532226563 : 6.58215134440104 : JumpStart); (5.75118198893229 : 6.58215134440104 : JumpEnd); (9.38541416666667 : 6.58215134440104 : JumpStart); (9.55208083333333 : 6.58215134440104 : JumpEnd); (10 : 6.58215134440104); (10 : 6.07859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/KhachHang/KhachHang_LuuViec" />
+      <nodes>
+        <classShapeMoniker Id="e4097095-e4c0-43f9-afe9-0f8b5bf69a1b" />
+        <classShapeMoniker Id="f6eee5a2-bc84-40c0-b8e9-eaed4dca7060" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.75); (5.875 : 6.375); (5.875 : 4.88103105273437); (6.25 : 4.88103105273437)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/NhaTuyenDung/NhaTuyenDung_ViecLam" />
+      <nodes>
+        <classShapeMoniker Id="8c7d33b9-1d7c-4bdb-a68c-a217d3e4b9be" />
+        <classShapeMoniker Id="4f225b6c-2b77-49ba-9cbf-9da5ff09c782" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 7.69314697265625); (6.25 : 7.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/NhaTuyenDung/NhaTuyenDung_DatLich" />
+      <nodes>
+        <classShapeMoniker Id="8c7d33b9-1d7c-4bdb-a68c-a217d3e4b9be" />
+        <classShapeMoniker Id="6052c8d9-82e5-4545-ac62-d82cadfbaacd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 8.48484537760417); (13 : 8.48484537760417); (13 : 6.8670068359375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/NhaTuyenDung/NhaTuyenDung_DonUngTuyen" />
+      <nodes>
+        <classShapeMoniker Id="8c7d33b9-1d7c-4bdb-a68c-a217d3e4b9be" />
+        <classShapeMoniker Id="fb1a9475-c799-46e0-98c7-20fa900b8969" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.8750025); (9.4687475 : 6.8750025); (9.4687475 : 6.07859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/NhaTuyenDung/NhaTuyenDung_LuuViec" />
+      <nodes>
+        <classShapeMoniker Id="8c7d33b9-1d7c-4bdb-a68c-a217d3e4b9be" />
+        <classShapeMoniker Id="f6eee5a2-bc84-40c0-b8e9-eaed4dca7060" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 7.27005126953125); (3.5 : 7.27005126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TimViecDataContext/KhachHang/KhachHang_NhaTuyenDung" />
+      <nodes>
+        <classShapeMoniker Id="e4097095-e4c0-43f9-afe9-0f8b5bf69a1b" />
+        <classShapeMoniker Id="8c7d33b9-1d7c-4bdb-a68c-a217d3e4b9be" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

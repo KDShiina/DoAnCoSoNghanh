@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "Sua";
+    Layout = "~/Views/Shared/_LayoutPageNhaTuyenDung.cshtml";
+}
+
+
+
+@model DoAnCoSoNghanh.Models.ViecLam
+
+<!--<script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>-->
+<script src="~/ckeditor/ckeditor.js"></script>
+<h2>Sửa Việc Làm</h2>
+
+@using (Html.BeginForm("Sua", "TuyenDung", FormMethod.Post, new { enctype = "multipart/form-data", id = "createForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaCongViec)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Hinh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (!string.IsNullOrEmpty(Model.Hinh))
+                {
+                    <img src="~/img/@Model.Hinh" alt="Ảnh công việc" />
+                }
+                <input type="file" accept="image/*" name="ImageUpload" />
+                @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenVieclam, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenVieclam, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenVieclam, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiaDiemLamViec, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiaDiemLamViec, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaDiemLamViec, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LoaiViecLam, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LoaiViecLam, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LoaiViecLam, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Luong, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Luong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Luong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MoTaCongViec, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea id="MoTaCongViec" required name="MoTaCongViec">@Model.MoTaCongViec</textarea>
+                <script>
+                    CKEDITOR.replace('MoTaCongViec', { autoParagraph: true });
+                </script>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Danh Mục", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Mal, ViewBag.DanhMucList as SelectList, "Chọn danh mục", new { @class = "form-control" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.YeuCauCongViec, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea id="YeuCauCongViec" required name="YeuCauCongViec">@Model.YeuCauCongViec</textarea>
+                <script>
+                    CKEDITOR.replace('YeuCauCongViec', { autoParagraph: true });
+                </script>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuyenLoiCongViec, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea id="QuyenLoiCongViec" required name="QuyenLoiCongViec">@Model.QuyenLoiCongViec</textarea>
+                <script>
+                    CKEDITOR.replace('QuyenLoiCongViec', { autoParagraph: true });
+                </script>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayDang, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NgayDang, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.NgayDang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayHetHan, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" id="NgayHetHan" required name="NgayHetHan" class="form-control">
+                @Html.ValidationMessageFor(model => model.NgayHetHan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TrangThai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TrangThai, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KhachHang.MaKH, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KhachHang.MaKH, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaNTD, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaNTD, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var currentDate = new Date().toISOString().split('T')[0];
+        document.getElementById("NgayDang").value = currentDate;
+    });
+
+    // Thêm sự kiện kiểm tra NgayHetHan
+    document.getElementById("createForm").addEventListener("submit", function (event) {
+        var ngayDangValue = document.getElementById("NgayDang").value;
+        var ngayHetHanValue = document.getElementById("NgayHetHan").value;
+
+        if (ngayHetHanValue <= ngayDangValue) {
+            alert("Ngày hết hạn phải sau ngày đăng.");
+            event.preventDefault(); // Ngăn chặn việc gửi form nếu điều kiện không đáp ứng
+        }
+    });
+</script>
+
+
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+</div>
+
+
+
+

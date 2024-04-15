@@ -1,0 +1,92 @@
+﻿@model DoAnCoSoNghanh.Models.ViecLam
+
+@{
+    ViewBag.Title = "Chitiet";
+    Layout = "~/Views/Shared/_LayoutPageNhaTuyenDung.cshtml";
+}
+@{
+    var maNTD = Model.MaNTD;
+}
+<h2>Chi tiết việc làm</h2>
+
+
+<div class="container">
+    <h2 class="text-center">Chi tiết việc làm</h2>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.TenVieclam)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.TenVieclam)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.DiaDiemLamViec)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.DiaDiemLamViec)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.LoaiViecLam)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.LoaiViecLam)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Luong)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Luong)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.MoTaCongViec)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.Raw(Model.MoTaCongViec)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.YeuCauCongViec)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.Raw(Model.YeuCauCongViec)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.QuyenLoiCongViec)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.Raw(Model.QuyenLoiCongViec)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.NgayDang)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.NgayDang)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.NgayHetHan)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.NgayHetHan)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Hinh)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Hinh)
+        </dd>
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Quay lại", "Index")
+</p>

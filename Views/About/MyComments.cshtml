@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Bình luận của bạn";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+
+@model IEnumerable<DoAnCoSoNghanh.Models.Comment>
+
+<div class="text-center">
+    <br />
+    <hr />
+    <h2>Các comment của bạn</h2>
+    <hr />
+    <br />
+</div>
+
+@if (Model.Any())
+{
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <th>
+               Nội dung
+            </th>
+            <th>
+                Thời gian
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentTime)
+                </td>
+                <td>
+                    <a href="@Url.Action("XoaComment","About", new {  id = item.CommentID })" class="btn btn-danger" role="button">Xóa</a>
+                    <a href="@Url.Action("Sua","About", new {  id = item.CommentID })" class="btn btn-dark" role="button">Chỉnh sửa</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="alert alert-info text-center" role="alert">
+        Bạn chưa đăng bất kỳ bình luận nào.
+    </div>
+}

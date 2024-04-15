@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "ViecLamTheoLoai";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+
+@using DoAnCoSoNghanh.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<ViecLam>
+
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+    <h2 class="text-center"></h2>
+    <hr>
+    <div class="row text-center">
+        @foreach (var viecLam in Model)
+        {
+            <div class="job-item p-4 mb-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-md-8 d-flex align-items-center ">
+                        <img class="flex-shrink-0 img-fluid border rounded" src="~/img/@viecLam.Hinh" alt="" style="width: 80px; height: 80px;">
+                        <div class="text-start ps-4">
+                            <a href="@Url.Action("Index", "JobDetails", new {Id = viecLam.MaCongViec})"> <h5 class="mb-3">@viecLam.TenVieclam</h5></a>
+                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>@viecLam.DiaDiemLamViec</span>
+                            <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>@viecLam.LoaiViecLam</span>
+                            <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>@viecLam.Luong</span>
+                            <span class="text-truncate me-0"><i class="bi bi-building"></i>@(viecLam?.NhaTuyenDung?.TenCongTy)</span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+
+
+                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line: @viecLam.NgayHetHan</small>
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+
+    </div>
+</div>
+   

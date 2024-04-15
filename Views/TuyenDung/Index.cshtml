@@ -1,0 +1,145 @@
+﻿@model IEnumerable<DoAnCoSoNghanh.Models.ViecLam>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageNhaTuyenDung.cshtml";
+}
+
+<h1>Việc làm đã đăng</h1>
+<style>
+    .table reponsive {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .table reponsive {
+        white-space: nowrap;
+    }
+    .choduyet {
+        color: red;
+    }
+
+    .daduyet {
+        color: green;
+    }
+    h1 {
+        text-align: center;
+        color:brown;
+    }
+    .abcd {
+        text-align: right;
+        margin-bottom: 20px;
+        margin-right:20px;
+
+    }
+</style>
+<div class="abcd"> 
+    @Html.ActionLink("Đăng việc", "Create")
+</div>
+  
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenVieclam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaDiemLamViec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiViecLam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Luong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoTaCongViec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YeuCauCongViec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuyenLoiCongViec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayDang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayHetHan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </th>
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenVieclam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaDiemLamViec)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiViecLam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Luong)
+                </td>
+                <td>
+                    @Html.Raw(item.MoTaCongViec)
+                </td>
+
+                <td>
+                    @Html.Raw(item.YeuCauCongViec)
+                </td>
+
+
+                <td>
+                    @Html.Raw(item.QuyenLoiCongViec)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayHetHan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hinh)
+                </td>
+                <td>
+                    @{
+                        string trangThaiText = "Chờ duyệt";
+                        string trangThaiClass = "choduyet";
+                        if (item.TrangThai == 1)
+                        {
+                            trangThaiText = "Đã duyệt";
+                            trangThaiClass = "daduyet";
+                        }
+                        else if (item.TrangThai == 2)
+                        {
+                            trangThaiText = "Từ chối";
+                        }
+                    }
+                    <span class="@trangThaiClass">@trangThaiText</span>
+                </td>
+
+
+                <td>
+                    <a href="@Url.Action("Sua", new { id = item.MaCongViec  })" class="btn btn-warning" role="button">Sửa</a>
+                    <a href="@Url.Action("Chitiet", new { id = item.MaCongViec  })" class="btn btn-dark" role="button">Chi tiết</a>
+                    <a href="@Url.Action("Xoa", new { id = item.MaCongViec  })" class="btn btn-danger" role="button" onclick="return confirm('Bạn chắc chắn muốn xóa chứ ?');">Xóa</a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
